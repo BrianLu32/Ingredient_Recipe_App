@@ -1,4 +1,4 @@
-CREATE TABLE restaurant_app.Nutrition (
+CREATE TABLE ingredient_recipe_app.Nutrition (
 	Ingredient_ID INT Primary Key,
 	Calories DECIMAL(6,2),
 	Carbohydrates DECIMAL(6,2),
@@ -8,7 +8,7 @@ CREATE TABLE restaurant_app.Nutrition (
 	Unit_ID INT,
 	
 	CONSTRAINT FK_Unit_ID FOREIGN KEY (Unit_ID)
-		REFERENCES restaurant_app.Unit(Unit_ID),
+		REFERENCES ingredient_recipe_app.Unit(Unit_ID),
 	CONSTRAINT FK_Ingredient_ID FOREIGN KEY (Ingredient_ID)
-		REFERENCES restaurant_app.Ingredient(Ingredient_ID)
+		REFERENCES ingredient_recipe_app.Ingredient(Ingredient_ID)
 );

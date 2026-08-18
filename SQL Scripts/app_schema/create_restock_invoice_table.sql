@@ -1,4 +1,4 @@
-CREATE TABLE restaurant_app.Restock_Invoice (
+CREATE TABLE ingredient_recipe_app.Restock_Invoice (
 	Invoice_ID INT PRIMARY KEY,
 	Transaction_Type VARCHAR(100),
 	Quantity SMALLINT,
@@ -7,8 +7,8 @@ CREATE TABLE restaurant_app.Restock_Invoice (
 	Supplier_ID INT,
 	
 	CONSTRAINT FK_Unit_ID FOREIGN KEY (Unit_ID)
-		REFERENCES restaurant_app.Unit(Unit_ID),
+		REFERENCES ingredient_recipe_app.Unit(Unit_ID),
 		
 	CONSTRAINT FK_Supplier_ID FOREIGN KEY (Supplier_ID)
-		REFERENCES restaurant_app.Supplier(Supplier_ID)
+		REFERENCES ingredient_recipe_app.Supplier(Supplier_ID)
 );

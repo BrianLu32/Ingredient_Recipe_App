@@ -1,4 +1,4 @@
-CREATE TABLE restaurant_app.Recipe (
+CREATE TABLE ingredient_recipe_app.Recipe (
 	Recipe_ID INT PRIMARY KEY,
 	Recipe_Name VARCHAR(100),
 	Serving_Count SMALLINT,

@@ -1,0 +1,1 @@
+CREATE SCHEMA ingredient_recipe_app;
