@@ -8,7 +8,12 @@ def parse_food(food):
         "calories": None,
         "protein": None,
         "carbs": None,
-        "fat": None
+        "fat": None,
+        "food_category": None,
+        "portion": None,
+        "unitFull": None,
+        "unitAbr": None,
+        "gramWeight": None
     }
 
     for food_nutrient in food["foodNutrients"]:
@@ -19,6 +24,20 @@ def parse_food(food):
             column = NUTRIENTS[nutrient_id]
             row[column] = food_nutrient.get("amount")
 
+    if (food_category := food.get("foodCategory")) is not None:
+        row["food_category"] = food_category.get("description")
+
+    # food portions is a list in json
+    for portion in food.get("foodPortions", []):
+        if portion.get("measureUnit").get("name") in UNITS:
+            row["portion"] = portion.get("value")
+            row["unitFull"] = portion.get("measureUnit").get("name")
+            row["unitAbr"] = portion.get("measureUnit").get("abbreviation")
+            row["gramWeight"] = portion.get("gramWeight")
+            break
+        else:
+            print(portion)
+
     return row
 
 NUTRIENTS = {
@@ -27,6 +46,15 @@ NUTRIENTS = {
     1005: "carbs",
     1008: "calories"
 }
+
+UNITS = [
+    "cup",
+    "tablespoon",
+    "milliliter",
+    "oz",
+    "gram",
+    "teaspoon"
+]
 
 # JSON is downloaded from USDA FoodData Central
 # https://fdc.nal.usda.gov/download-datasets
@@ -43,7 +71,12 @@ with open("foods.csv", "w", newline="", encoding="utf-8") as file:
         "calories",
         "protein",
         "carbs",
-        "fat"
+        "fat",
+        "food_category",
+        "portion",
+        "unitFull",
+        "unitAbr",
+        "gramWeight"
     ]
 
     writer = csv.DictWriter(file, fieldnames=fieldnames)

@@ -1,4 +1,4 @@
 CREATE TABLE ingredient_recipe_app.Category (
-	Category_ID INT PRIMARY KEY,
+	Category_ID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	Category_Type VARCHAR(100)
 );

@@ -1,10 +1,10 @@
-CREATE TABLE ingredient_recipe_app.Nutrition (
-	Ingredient_ID INT Primary Key,
-	Calories_per_100g DECIMAL(6,2),
-	Carbohydrates_per_100g DECIMAL(6,2),
-	Protein_per_100g DECIMAL(6,2),
-	Fat_per_100g DECIMAL(6,2),
-	
+CREATE TABLE ingredient_recipe_app.Serving_Quantity (
+	Serving_Quantity_ID INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	Ingredient_ID INT,
+	Serving_Quantity DECIMAL(6,2),
+	Unit_ID INT,
+	Gram_Weight DECIMAL(6,2),
+
 	CONSTRAINT FK_Unit_ID FOREIGN KEY (Unit_ID)
 		REFERENCES ingredient_recipe_app.Unit(Unit_ID),
 	CONSTRAINT FK_Ingredient_ID FOREIGN KEY (Ingredient_ID)
