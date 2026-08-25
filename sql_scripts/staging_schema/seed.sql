@@ -1,0 +1,1 @@
+\copy staging.food_staging FROM 'FoodData_Central_foundation_food_json/foods.csv' WITH (FORMAT csv, HEADER true);

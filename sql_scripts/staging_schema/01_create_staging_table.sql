@@ -1,4 +1,4 @@
-CREATE TABLE staging.food_staging (
+CREATE TABLE IF NOT EXISTS staging.food_staging (
 	fdc_id INT PRIMARY KEY,
 	food_name TEXT,
 	calories DECIMAL(6,2),

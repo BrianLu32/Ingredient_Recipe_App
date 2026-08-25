@@ -2,3 +2,6 @@ A Windows Application designed for restaurant owners. The application aims to ma
 
 Stretch Goal:
 - Integrate into a web application and mobile application
+
+Optional Python Dependencies
+- python-dotenv

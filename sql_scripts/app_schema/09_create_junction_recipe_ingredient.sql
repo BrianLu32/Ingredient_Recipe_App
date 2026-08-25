@@ -1,4 +1,4 @@
-CREATE TABLE ingredient_recipe_app.Recipe_Ingredient (
+CREATE TABLE IF NOT EXISTS ingredient_recipe_app.Recipe_Ingredient (
 	Recipe_ID INT,
 	Ingredient_ID INT,
 	Quantity SMALLINT,
@@ -6,8 +6,10 @@ CREATE TABLE ingredient_recipe_app.Recipe_Ingredient (
 	
 	CONSTRAINT FK_Unit_ID FOREIGN KEY (Unit_ID)
 		REFERENCES ingredient_recipe_app.Unit(Unit_ID),
+		
 	CONSTRAINT FK_Recipe_ID FOREIGN KEY (Recipe_ID)
 		REFERENCES ingredient_recipe_app.Recipe(Recipe_ID),
+		
 	CONSTRAINT FK_Ingredient_ID FOREIGN KEY (Ingredient_ID)
 		REFERENCES ingredient_recipe_app.Ingredient(Ingredient_ID),
 		

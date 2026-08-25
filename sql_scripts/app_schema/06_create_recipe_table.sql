@@ -1,4 +1,4 @@
-CREATE TABLE ingredient_recipe_app.Recipe (
+CREATE TABLE IF NOT EXISTS ingredient_recipe_app.Recipe (
 	Recipe_ID INT PRIMARY KEY,
 	Recipe_Name VARCHAR(100),
 	Serving_Count SMALLINT,

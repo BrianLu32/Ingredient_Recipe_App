@@ -35,8 +35,6 @@ def parse_food(food):
             row["unitAbr"] = portion.get("measureUnit").get("abbreviation")
             row["gramWeight"] = portion.get("gramWeight")
             break
-        else:
-            print(portion)
 
     return row
 
@@ -64,7 +62,7 @@ with open('FoodData_Central_foundation_food_json/FoodData_Central_foundation_foo
 
 foods = data["FoundationFoods"]
 
-with open("foods.csv", "w", newline="", encoding="utf-8") as file:
+with open("FoodData_Central_foundation_food_json/foods.csv", "w", newline="", encoding="utf-8") as file:
     fieldnames = [
         "fdc_id",
         "name",

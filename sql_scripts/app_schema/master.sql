@@ -1,0 +1,10 @@
+\ir 00_create_app_schema.sql;
+\ir 01_create_category_table.sql;
+\ir 02_create_ingredient_table.sql;
+\ir 03_create_unit_table.sql;
+\ir 04_create_nutrition_table.sql;
+\ir 05_create_serving_quantity_table.sql;
+\ir 06_create_recipe_table.sql;
+\ir 07_create_supplier_table.sql;
+\ir 08_create_restock_invoice_table.sql;
+\ir 09_create_junction_recipe_ingredient.sql;

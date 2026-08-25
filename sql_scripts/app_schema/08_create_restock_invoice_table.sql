@@ -1,4 +1,4 @@
-CREATE TABLE ingredient_recipe_app.Restock_Invoice (
+CREATE TABLE IF NOT EXISTS ingredient_recipe_app.Restock_Invoice (
 	Invoice_ID INT PRIMARY KEY,
 	Transaction_Type VARCHAR(100),
 	Quantity SMALLINT,

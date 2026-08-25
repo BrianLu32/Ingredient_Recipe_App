@@ -1,0 +1,1 @@
+TRUNCATE TABLE staging.food_staging CASCADE;
