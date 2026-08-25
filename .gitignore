@@ -1,0 +1,6 @@
+*.json
+*.csv
+.env
+/setup
+/sql_scripts
+/etl
