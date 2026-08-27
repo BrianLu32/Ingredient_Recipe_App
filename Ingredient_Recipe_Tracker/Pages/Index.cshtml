@@ -1,0 +1,53 @@
+﻿@page
+@model Ingredient_Recipe_Tracker.Pages.IndexModel
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ingredient Recipe Tracker</title>
+</head>
+
+<body>
+
+    <h1>Ingredient Recipe Tracker</h1>
+
+    <p>Search for an ingredient:</p>
+
+    <input id="ingredientSearch"
+           type="text"
+           placeholder="Chicken" />
+
+    <button id="searchButton">
+        Search
+    </button>
+
+    <h2>Results</h2>
+
+    <pre id="results"></pre>
+
+    <script>
+            const searchInput = document.getElementById("ingredientSearch");
+            const searchButton = document.getElementById("searchButton");
+            const results = document.getElementById("results");
+
+            searchButton.addEventListener("click", async () => {
+
+                const name = searchInput.value;
+
+                const response = await fetch(
+                    `/Ingredient/search?name=${encodeURIComponent(name)}`
+                );
+
+                const ingredients = await response.json();
+
+                results.textContent =
+                    JSON.stringify(ingredients, null, 2);
+            });
+    </script>
+
+</body>
+</html>

@@ -5,18 +5,23 @@ using Npgsql;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
+// Razor
+builder.Services.AddRazorPages();
+
+// Open API
+builder.Services.AddOpenApi();
+
+// Database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
     throw new InvalidOperationException("Default connection string was not configured");
 
 builder.Services.AddSingleton(NpgsqlDataSource.Create(connectionString));
 
+// Dependencies
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 builder.Services.AddScoped<IIngredientService, IngredientService>();
-
-builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
@@ -28,8 +33,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapRazorPages();
 
 app.Run();
