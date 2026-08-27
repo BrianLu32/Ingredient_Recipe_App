@@ -1,6 +1,13 @@
-*.json
+/FoodData_Central_foundation_food_json/*.json
 *.csv
 .env
 /setup
 /sql_scripts
 /etl
+.vscode
+/postman
+*.postman
+
+*/.vs
+*/bin
+*/obj
