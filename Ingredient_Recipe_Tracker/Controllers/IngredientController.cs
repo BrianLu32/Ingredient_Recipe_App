@@ -23,7 +23,7 @@ namespace Ingredient_Recipe_Tracker.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Ingredient?>> GetById(int id)
+        public async Task<ActionResult<IEnumerable<Ingredient>>> GetById(int id)
         {
             var ingredient = await _ingredientService.GetIngredientById(id);
 

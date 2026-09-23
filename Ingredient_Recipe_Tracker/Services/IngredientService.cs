@@ -1,5 +1,6 @@
 ﻿using Ingredient_Recipe_Tracker.Model;
 using Ingredient_Recipe_Tracker.Repository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Ingredient_Recipe_Tracker.Services
 {
@@ -16,7 +17,7 @@ namespace Ingredient_Recipe_Tracker.Services
         {
             return await _repository.GetIngredientsByNameAsync(name);
         }
-        public async Task<Ingredient?> GetIngredientById(int id) 
+        public async Task<IEnumerable<Ingredient>> GetIngredientById(int id) 
         {
             return await _repository.GetIngredientByIdAsync(id);
         }

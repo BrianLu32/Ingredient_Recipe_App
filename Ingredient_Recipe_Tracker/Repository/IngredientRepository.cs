@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Ingredient_Recipe_Tracker.Model;
+using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 
 namespace Ingredient_Recipe_Tracker.Repository
@@ -25,7 +26,8 @@ namespace Ingredient_Recipe_Tracker.Repository
                 	n.ProteinPer100g,
                 	n.FatPer100g,
                 	sq.ServingQuantity,
-                	u.UnitName
+                	u.UnitName,
+                	sq.PortionDescription
                 FROM ingredient_recipe_app.Ingredient i
                 JOIN ingredient_recipe_app.Category c
                 	ON c.CategoryId = i.CategoryId
@@ -33,7 +35,7 @@ namespace Ingredient_Recipe_Tracker.Repository
                 	ON n.IngredientId = i.IngredientId
                 JOIN ingredient_recipe_app.ServingQuantity sq
                 	ON sq.IngredientId = i.IngredientId
-                JOIN ingredient_recipe_app.Unit u
+                LEFT JOIN ingredient_recipe_app.Unit u
                 	ON u.UnitId = sq.UnitId
                 WHERE i.IngredientName ILIKE @IngredientName;
                 """;
@@ -46,7 +48,7 @@ namespace Ingredient_Recipe_Tracker.Repository
             );
         }
 
-        public async Task<Ingredient?> GetIngredientByIdAsync(int id)
+        public async Task<IEnumerable<Ingredient>> GetIngredientByIdAsync(int id)
         {
             const string sql = """
                 SELECT
@@ -58,7 +60,8 @@ namespace Ingredient_Recipe_Tracker.Repository
                 	n.ProteinPer100g,
                 	n.FatPer100g,
                 	sq.ServingQuantity,
-                	u.UnitName
+                	u.UnitName,
+                	sq.PortionDescription
                 FROM ingredient_recipe_app.Ingredient i
                 JOIN ingredient_recipe_app.Category c
                 	ON c.CategoryId = i.CategoryId
@@ -66,14 +69,14 @@ namespace Ingredient_Recipe_Tracker.Repository
                 	ON n.IngredientId = i.IngredientId
                 JOIN ingredient_recipe_app.ServingQuantity sq
                 	ON sq.IngredientId = i.IngredientId
-                JOIN ingredient_recipe_app.Unit u
+                LEFT JOIN ingredient_recipe_app.Unit u
                 	ON u.UnitId = sq.UnitId
                 WHERE i.IngredientId = @Id
                 """;
 
             await using var connection = await _dataSource.OpenConnectionAsync();
 
-            return await connection.QuerySingleOrDefaultAsync<Ingredient>(
+            return await connection.QueryAsync<Ingredient>(
                 sql,
                 new { Id = id }
             );
