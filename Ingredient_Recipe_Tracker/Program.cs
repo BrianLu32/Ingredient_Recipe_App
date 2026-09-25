@@ -15,6 +15,8 @@ builder.Services.AddSingleton(NpgsqlDataSource.Create(connectionString));
 
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
 builder.Services.AddScoped<IIngredientService, IngredientService>();
+builder.Services.AddScoped<IIngredientLotRepository, IngredientLotRepository>();
+builder.Services.AddScoped<IIngredientLotService, IngredientLotService>();
 
 builder.Services.AddOpenApi();
 
